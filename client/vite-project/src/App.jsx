@@ -2,7 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import './App.css';
 
-const socket = io("https://real-time-communication-with-socket-io.onrender.com", { reconnection: true, reconnectionAttempts: 5 });
+// Use environment variable for server URL (Vite)
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "https://real-time-communication-with-socket-io.onrender.com";
+
+const socket = io(SERVER_URL, { reconnection: true, reconnectionAttempts: 5 });
 
 function App() {
   const [username, setUsername] = useState("");
@@ -61,6 +64,7 @@ function App() {
     socket.on("chat message", handleMessage);
     socket.on("private message", handleMessage);
     socket.on("load messages", (msgs) => setMessages(msgs));
+
     socket.on("user joined", (user) =>
       setMessages(prev => [...prev, { username: "System", message: `${user} joined`, time: new Date().toLocaleTimeString() }])
     );
@@ -68,10 +72,7 @@ function App() {
       setMessages(prev => [...prev, { username: "System", message: `${user} left`, time: new Date().toLocaleTimeString() }])
     );
 
-    // Online users list
-    socket.on("online users", (users) => {
-      setOnlineUsers(users.filter(u => u !== username)); // Exclude self
-    });
+    socket.on("online users", (users) => setOnlineUsers(users.filter(u => u !== username)));
 
     socket.on("typing", (user) => {
       setTypingUser(user);
@@ -165,7 +166,7 @@ function App() {
               <div key={idx} className="message" style={{ color: msg.private ? "blue" : "black" }}>
                 <b>{msg.username}</b> [{msg.time}]{msg.private ? " (private)" : ""}:
                 {msg.type === "file" ? (
-                  <a href={`http://localhost:3000/uploads/${msg.message}`} target="_blank">{msg.message}</a>
+                  <a href={`${SERVER_URL}/uploads/${msg.message}`} target="_blank" rel="noopener noreferrer">{msg.message}</a>
                 ) : msg.message}
                 <span className="reactions">
                   <button onClick={() => socket.emit("message reaction", { msgId: idx, reaction: "👍" })}>👍</button>
