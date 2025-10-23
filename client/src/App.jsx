@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import './App.css';
 
 // Use environment variable for server URL (Vite)
+// Use environment variable if set
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || "https://real-time-communication-with-socket-io.onrender.com";
 
 const socket = io(SERVER_URL, { reconnection: true, reconnectionAttempts: 5 });
