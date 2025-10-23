@@ -1,0 +1,4 @@
+[build]
+  base = "client"               # the folder containing your React app
+  publish = "client/dist"       # Vite outputs build files to dist
+  command = "npm install && npm run build"
