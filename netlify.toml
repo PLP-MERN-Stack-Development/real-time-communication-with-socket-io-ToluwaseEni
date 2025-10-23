@@ -1,8 +1,8 @@
 [build]
   base = "client"
-  publish = "client/dist"
+  publish = "dist"
   command = "npm install && npm run build"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "22.2.0"
   VITE_SERVER_URL = "https://real-time-communication-with-socket-io.onrender.com"
