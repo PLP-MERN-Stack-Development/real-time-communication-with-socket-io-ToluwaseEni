@@ -1,0 +1,108 @@
+/* General layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Inputs and buttons */
+input[type="text"], select {
+  padding: 8px;
+  margin: 5px 0;
+  width: calc(100% - 16px);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 15px;
+  margin-top: 5px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Chat box */
+.chat-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+  background: #f9f9f9;
+  margin: 10px 0;
+}
+
+/* Individual message */
+.message {
+  margin-bottom: 8px;
+}
+
+.message b {
+  margin-right: 5px;
+}
+
+.message .reactions button {
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+.message .reactions button:hover {
+  color: #000;
+}
+
+/* Typing indicator */
+.typing {
+  font-style: italic;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+/* File input */
+input[type="file"] {
+  margin-top: 10px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  input[type="text"], select, button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .chat-box {
+    height: 250px;
+  }
+}
