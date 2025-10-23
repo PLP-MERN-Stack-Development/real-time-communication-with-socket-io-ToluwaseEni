@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import './App.css';
 
-const socket = io("http://localhost:3000", { reconnection: true, reconnectionAttempts: 5 });
+const socket = io("https://real-time-communication-with-socket-io.onrender.com", { reconnection: true, reconnectionAttempts: 5 });
 
 function App() {
   const [username, setUsername] = useState("");
